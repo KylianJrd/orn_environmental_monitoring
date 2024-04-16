@@ -5,5 +5,7 @@ import time
 ldr = ADC(26)
  
 while True:
-     print((ldr.read_u16()*100)/65536)
-     time.sleep(2)
+    val = ldr.read_u16()
+    print(val)
+    print((val*100)/65536)
+    time.sleep(2)
