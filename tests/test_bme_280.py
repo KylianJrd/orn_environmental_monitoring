@@ -9,6 +9,7 @@ print(i2c.scan())
 bme = bme280.BME280(i2c=i2c,address=0x77)
 
 
+
 print('tot')
 while True:
 
