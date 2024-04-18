@@ -86,7 +86,7 @@ _BMP280_REGISTER_DATA = const(0xF7)
 
 
 class BMP280:
-    def __init__(self, i2c_bus, addr=0x76, use_case=BMP280_CASE_HANDHELD_DYN):
+    def __init__(self, i2c_bus, addr=0x77, use_case=BMP280_CASE_HANDHELD_DYN):
         self._bmp_i2c = i2c_bus
         self._i2c_addr = addr
 
