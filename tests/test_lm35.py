@@ -2,7 +2,7 @@ from machine import Pin, I2C, ADC
 from time import sleep
 import utime
 
-analog_value = ADC(26)
+analog_value = ADC(28)
 conversion_factor = 3.3/ 65535
 
 while True:
