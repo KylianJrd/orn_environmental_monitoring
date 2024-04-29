@@ -1,0 +1,67 @@
+{
+    "capteurs": [
+      {
+        "nom": "BME280",
+        "mesures": {
+          "temperature": {
+            "valeur": 1,
+            "unite": "°C"
+          },
+          "pression": {
+            "valeur": 1,
+            "unite": "hPa"
+          },
+          "humidite": {
+            "valeur": 1,
+            "unite": "%"
+          }
+        }
+      },
+      {
+        "nom": "LM35",
+        "mesures": {
+          "temperature": {
+            "valeur": 1,
+            "unite": "°C"
+          }
+        }
+      },
+      {
+        "nom": "LDR",
+        "mesures": {
+          "luminosite": {
+            "valeur": 1,
+            "unite": "%"
+          }
+        }
+      },
+      {
+        "nom": "Girouette",
+        "mesures": {
+          "direction_vent": {
+            "valeur": 1,
+            "unite": "degrés"
+          }
+        }
+      },
+      {
+        "nom": "Anémomètre",
+        "mesures": {
+          "vitesse_vent": {
+            "valeur": 1,
+            "unite": "km/h"
+          }
+        }
+      },
+      {
+        "nom": "Pluviomètre",
+        "mesures": {
+          "quantite_eau": {
+            "valeur": 1,
+            "unite": "mm"
+          }
+        }
+      }
+    ]
+  }
+  
