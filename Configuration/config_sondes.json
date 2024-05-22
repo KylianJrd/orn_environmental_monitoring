@@ -1,0 +1,55 @@
+{
+  "ip": "192.168.1.42",
+  "name": "pico_test",
+  "capteurs": [
+    {
+      "units": ["%", "C", "hPa"],
+      "active": 1,
+      "type": "BME280",
+      "interface": "i2c",
+      "adresse_i2c": "0x77",
+      "pin_analog": "None",
+      "pin_scl": "1",
+      "pin_sda": "0",
+      "name": "bme_1"
+    },
+    {
+      "units": "%",
+      "name": "ldr_1",
+      "pin_sda": "None",
+      "interface": "analog",
+      "adresse_i2c": "None",
+      "pin_analog": "28",
+      "pin_scl": "None",
+      "active": 1,
+      "type": "LDR"
+    },
+    {
+      "units": "km.h",
+      "name": "anemo_1",
+      "pin_sda": "None",
+      "interface": "digital",
+      "adresse_i2c": "None",
+      "pin_digital": "14",
+      "pin_scl": "None",
+      "active": 1,
+      "type": "ANEMOMETER"
+    },
+    {
+      "units": "degre",
+      "name": "windVane_1",
+      "pin_sda": "None",
+      "interface": "analog",
+      "adresse_i2c": "None",
+      "pin_analog": "26",
+      "pin_scl": "None",
+      "active": 1,
+      "type": "WINDVANE"
+    }
+  ]
+}
+
+
+
+    
+
