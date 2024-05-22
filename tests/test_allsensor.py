@@ -99,14 +99,18 @@ adc = ADC(26)
 conversion_factor = 3.3 / 65535
 wind_readings = []
 
+
+time = 1714052965
+
 # Ouvrir le fichier CSV en mode ajout
 with open("mesures7capteurs.csv", "w+") as log:
-    chaine = "c_sht,h_sht,c_bme,p_bme,h_bme,c_lm,lux_diode,direction_vent,vitesse_vent,pluviometrie\n"
+    chaine = "timestamp,c_sht,h_sht,c_bme,p_bme,h_bme,c_lm,lux_diode,direction_vent,vitesse_vent,pluviometrie\n"
     log.write(chaine)
     print(chaine)
     while True:
         # Temporisation d'une seconde
         sleep_ms(10000)
+        time += 10
 
         # Obtenir les données de température et d'humidité
         shtdata = sht.get_temp_humi()
@@ -139,7 +143,7 @@ with open("mesures7capteurs.csv", "w+") as log:
         pluviometrie = compteur_impulsions_pluviometre * 0.2794
 
         # Enregistrement des mesures dans le fichier CSV
-        chaine = "{},{},{},{},{},{},{},{},{},{}\n".format(*shtdata, *bme_values, tempC, light_percentage, average_direction, vitesse_vent, pluviometrie)
+        chaine = "{},{},{},{},{},{},{},{},{},{},{}\n".format(time, *shtdata, *bme_values, tempC, light_percentage, average_direction, vitesse_vent, pluviometrie)
         log.write(chaine)
         print(chaine)
         log.flush()

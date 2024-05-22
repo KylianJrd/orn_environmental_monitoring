@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="10"> <!-- Actualiser toutes les 10 secondes -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raspberry Pi Pico Web server - WIZnet W5100S</title>
+<script>
+function updateSensors() {
+    var sensors = {sensors_json};
+    // Mettre à jour les éléments HTML avec les données des capteurs
+    document.getElementById("bme280_temp").innerHTML = sensors.capteurs[0].mesures.temperature.valeur;
+    document.getElementById("bme280_pressure").innerHTML = sensors.capteurs[0].mesures.pression.valeur;
+    document.getElementById("bme280_humidity").innerHTML = sensors.capteurs[0].mesures.humidite.valeur;
+    document.getElementById("lm35_temp").innerHTML = sensors.capteurs[1].mesures.temperature.valeur;
+    // Ajouter le reste des données ici...
+}
+setInterval(updateSensors, 10000); // Mettre à jour toutes les 10 secondes
+</script>
+</head>
+<body>
+<div align="center">
+<h1>Raspberry Pi Pico Web server & WIZnet Ethernet HAT</h1>
+<h2>Sensor Data</h2>
+<p>BME280 Temperature: <span id="bme280_temp"></span> °C</p>
+<p>BME280 Pressure: <span id="bme280_pressure"></span> hPa</p>
+<p>BME280 Humidity: <span id="bme280_humidity"></span> %</p>
+<p>LM35 Temperature: <span id="lm35_temp"></span> °C</p>
+<!-- Ajouter le reste des capteurs ici... -->
+</div>
+</body>
+</html>

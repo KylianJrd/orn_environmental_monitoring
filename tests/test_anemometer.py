@@ -33,7 +33,7 @@ def initialisation_capteur_vitesse_vent(numero_broche_entree):
 # Fonction principale pour tester le capteur de vitesse du vent
 if __name__ == "__main__":
     try:
-        initialisation_capteur_vitesse_vent(0)  # Initialisation du capteur de vitesse du vent sur la broche 0
+        initialisation_capteur_vitesse_vent(14)  # Initialisation du capteur de vitesse du vent sur la broche 0
         while True:
             sleep(1)  # Attente d'une seconde
     except KeyboardInterrupt:
