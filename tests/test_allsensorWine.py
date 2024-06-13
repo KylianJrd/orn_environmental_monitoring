@@ -14,22 +14,10 @@ conversion_factor = 3.3 / 65535  # Conversion de la valeur ADC en tension
 
 # Tableau des valeurs de résistance et de l'angle correspondant
 wind_vane_data = {
-    33000: 0.0,
-    9500: 22.5,
-    11000: 45.0,
-    3140: 67.5,
-    3400: 90.0,
-    1400: 112.5,
-    2200: 135.0,
-    600: 157.5,
-    1000: 180.0,
-    900: 202.5,
-    6200: 225.0,
-    17120: 247.5,
-    13000: 270.0,
-    25000: 292.5,
-    64900 : 315.0,
-    21880 : 337.5
+    33000: 0.0, 6570: 22.5, 8200: 45.0, 891: 67.5, 1000: 90.0, 
+    688: 112.5, 2200: 135.0, 1410: 157.5, 3900: 180.0, 3140: 202.5, 
+    16000: 225.0, 14120: 247.5, 120000: 270.0, 42120: 292.5, 64900: 315.0, 
+    21880: 337.5
 }
 
 R1 = 9940  # Résistance fixe
@@ -45,7 +33,7 @@ def detection_impulsion(p, type_capteur):
 
 # Initialisation des broches d'entrée pour les capteurs
 def initialisation_capteurs(numero_broche_anemometre, numero_broche_pluviometre):
-    broche_anemometre = Pin(numero_broche_anemometre, Pin.IN, Pin.PULL_DOWN)  # Configuration de la broche d'entrée pour l'anemometre
+    broche_anemometre = Pin(numero_broche_anemometre, Pin.IN, Pin.PULL_UP)  # Configuration de la broche d'entrée pour l'anemometre
     broche_anemometre.irq(trigger=Pin.IRQ_RISING, handler=lambda p: detection_impulsion(p, "anemometre"))  # Définition de la fonction de traitement de l'interruption pour détecter les impulsions de l'anemometre
 
     broche_pluviometre = Pin(numero_broche_pluviometre, Pin.IN, Pin.PULL_UP)  # Configuration de la broche d'entrée pour le pluviometre
@@ -80,7 +68,7 @@ if __name__ == "__main__":
         wind_readings = []
         while True:
             # Surveillance de l'anemometre et du pluviometre
-            utime.sleep(max(integration_anemometre, integration_pluviometre))
+            utime.sleep(0.5)  # Réduire l'intervalle de temps entre les mesures
             # Lecture de la valeur ADC pour l'anemometre
             u2 = adc.read_u16() * conversion_factor
             # Calcul de la résistance de la girouette
@@ -96,8 +84,8 @@ if __name__ == "__main__":
                     angle_correspondant = angle
             # Ajouter l'angle mesuré à la liste des lectures du vent
             wind_readings.append(angle_correspondant)
-            # Limiter la liste des lectures du vent à 10 éléments
-            if len(wind_readings) > 10:
+            # Limiter la liste des lectures du vent à 5 éléments pour une réaction plus rapide
+            if len(wind_readings) > 1:
                 wind_readings.pop(0)
             # Calculer la direction moyenne du vent
             average_direction = calculate_average_wind_direction(wind_readings)
@@ -106,12 +94,13 @@ if __name__ == "__main__":
             # Calculer la pluviométrie
             pluviometrie = compteur_impulsions_pluviometre * 0.2794  # Calcul de la pluviométrie en mm
             # Afficher les valeurs
-            print(f'Direction moyenne du vent: {average_direction} degrés - Vitesse du vent: {vitesse_vent} km/h - Pluviométrie: {pluviometrie} mm')
+            print(f'{u2},  Direction moyenne du vent: {average_direction} degrés - Vitesse du vent: {vitesse_vent} km/h - Pluviométrie: {pluviometrie} mm')
             compteur_impulsions_anemometre = 0
             compteur_impulsions_pluviometre = 0
 
     except KeyboardInterrupt:
         pass  # Ignorer l'exception KeyboardInterrupt et terminer proprement le programme
+
 
 
 
