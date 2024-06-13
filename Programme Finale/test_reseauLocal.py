@@ -61,6 +61,7 @@ def main():
 
             data_json = {"ip": config['ip'],
                          "name": config['name'],
+                         "groupe": config['groupe'],
                          "capteurs": []}
             print(config)
             for sensor_config in config['capteurs']:
